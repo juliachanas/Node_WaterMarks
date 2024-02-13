@@ -47,11 +47,12 @@ const addImageWatermarkToImage = async function (
 const prepareOutputFilename = (filename) => {
   const [name, ext] = filename.split('.');
   let index = 1;
-  let newFilename = `${name}-with-watermark.${ext}`;
+  const [originName] = name.split('-with-watermark');
+  let newFilename = `${originName}-with-watermark.${ext}`;
 
   // Sprawdzamy istnienie pliku, dodajemy sufiks numeryczny, jeśli plik już istnieje
   while (fs.existsSync(`./img/${newFilename}`)) {
-    newFilename = `${name}-with-watermark-${index}.${ext}`;
+    newFilename = `${originName}-with-watermark-${index}.${ext}`;
     index++;
   }
 
